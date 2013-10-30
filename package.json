@@ -1,0 +1,26 @@
+{
+  "name": "blinkaudit",
+  "description": "SaferAging Blink Audit App",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "http://app.saferaging.com",
+  "author": {
+    "name": "Chris Williams",
+    "email": "chris@saferaging.com"
+  },
+  "main": "server.js",
+
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.3.x"
+  },
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "pg": ">= 2.6.1",
+    "express": ">= 3.4.0"
+  },
+  "devDependencies": {
+  }
+}
