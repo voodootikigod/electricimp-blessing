@@ -12,6 +12,7 @@ pg.connect(connString, function(err, client, done) {
     var data = req.body;
     console.log(data);
     client.query("insert into blessed (pkg) VALUES ($1);", [JSON.stringify(data)], function (err, results) {
+      if (err) {console.log(err);}
       res.send("OK");
     });
   });
