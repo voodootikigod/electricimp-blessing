@@ -2,11 +2,6 @@ var express = require('express');
 var pg = require('pg');
 var connString = process.env.DATABASE_URL;
 
-
-
-
-
-
 pg.connect(connString, function(err, client, done) {
   var app = express();
   app.use(express.json());
