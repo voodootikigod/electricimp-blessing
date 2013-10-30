@@ -1,6 +1,12 @@
 var express = require('express');
 var pg = require('pg');
 var connString = process.env.HEROKU_POSTGRESQL_BRONZE_URL;
+
+
+
+
+
+
 pg.connect(connString, function(err, client, done) {
   var app = express();
   app.use(express.json());
@@ -11,22 +17,35 @@ pg.connect(connString, function(err, client, done) {
   app.post("/factory_results", function (req, res) {
     var data = req.body;
     client.query("insert into audit (action, pkg) VALUES ($1, $2);", [ 'F', JSON.stringify(data)], function (err, results) {
-      if (err) {console.log(err);}
-      res.send("OK");
+      if (err) {
+        console.log(err);
+        res.send("FAILED TO SAVE");
+      } else {
+        res.send("OK");
+      }
+
     });
   });
   app.post("/registration", function (req, res) {
     var data = req.body;
     client.query("insert into audit (action, pkg) VALUES ($1, $2);", [ 'R', JSON.stringify(data)], function (err, results) {
-      if (err) {console.log(err);}
-      res.send("OK");
+      if (err) {
+        console.log(err);
+        res.send("FAILED TO SAVE");
+      } else {
+        res.send("OK");
+      }
     });
   });
   app.post("/enrollment", function (req, res) {
     var data = req.body;
     client.query("insert into audit (action, pkg) VALUES ($1, $2);", [ 'E', JSON.stringify(data)], function (err, results) {
-      if (err) {console.log(err);}
-      res.send("OK");
+      if (err) {
+        console.log(err);
+        res.send("FAILED TO SAVE");
+      } else {
+        res.send("OK");
+      }
     });
   });
   app.listen(process.env.PORT || 3000);
