@@ -1,7 +1,7 @@
 var express = require('express');
 var pg = require('pg');
 var connString = process.env.HEROKU_POSTGRESQL_BRONZE_URL;
-pg.connect(conString, function(err, client, done) {
+pg.connect(connString, function(err, client, done) {
   var app = express();
   app.use(express.json());
   app.get('/', function(req, res){
