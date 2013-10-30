@@ -1,6 +1,6 @@
 var express = require('express');
 var pg = require('pg');
-var connString = process.env.HEROKU_POSTGRESQL_BRONZE_URL;
+var connString = process.env.DATABASE_URL;
 
 
 
