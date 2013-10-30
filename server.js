@@ -4,10 +4,11 @@ var connString = process.env.HEROKU_POSTGRESQL_BRONZE_URL;
 pg.connect(connString, function(err, client, done) {
   var app = express();
   app.use(express.json());
+  app.use(express.urlencoded());
   app.get('/', function(req, res){
     res.send('These aren\'t the droids you are looking for.');
   });
-  app.post("/blessing.json", function (req, res) {
+  app.post("/blessed", function (req, res) {
     var data = req.body;
     console.log(data);
     client.query("insert into blessed (pkg) VALUES ($1);", [JSON.stringify(data)], function (err, results) {
