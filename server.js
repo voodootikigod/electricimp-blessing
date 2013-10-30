@@ -8,10 +8,23 @@ pg.connect(connString, function(err, client, done) {
   app.get('/', function(req, res){
     res.send('These aren\'t the droids you are looking for.');
   });
-  app.post("/blessed", function (req, res) {
+  app.post("/factory_results", function (req, res) {
     var data = req.body;
-    console.log(data);
-    client.query("insert into blessed (pkg) VALUES ($1);", [JSON.stringify(data)], function (err, results) {
+    client.query("insert into audit (action, pkg) VALUES ($1, $2);", [ 'F', JSON.stringify(data)], function (err, results) {
+      if (err) {console.log(err);}
+      res.send("OK");
+    });
+  });
+  app.post("/registration", function (req, res) {
+    var data = req.body;
+    client.query("insert into audit (action, pkg) VALUES ($1, $2);", [ 'R', JSON.stringify(data)], function (err, results) {
+      if (err) {console.log(err);}
+      res.send("OK");
+    });
+  });
+  app.post("/enrollment", function (req, res) {
+    var data = req.body;
+    client.query("insert into audit (action, pkg) VALUES ($1, $2);", [ 'E', JSON.stringify(data)], function (err, results) {
       if (err) {console.log(err);}
       res.send("OK");
     });
